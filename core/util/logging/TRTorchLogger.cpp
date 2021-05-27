@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdio>
 
 #define TERM_NORMAL "\033[0m";
 #define TERM_RED "\033[0;31m";
@@ -17,10 +18,14 @@ namespace util {
 namespace logging {
 
 TRTorchLogger::TRTorchLogger(std::string prefix, Severity severity, bool color)
-    : prefix_(prefix), reportable_severity_((LogLevel)severity), color_(color) {}
+    : prefix_(prefix), reportable_severity_((LogLevel)severity), color_(color) {
+        freopen("/falldetector/TRTorch/log_err.txt", "w", stderr);
+    }
 
 TRTorchLogger::TRTorchLogger(std::string prefix, LogLevel lvl, bool color)
-    : prefix_(prefix), reportable_severity_(lvl), color_(color) {}
+    : prefix_(prefix), reportable_severity_(lvl), color_(color) {
+        freopen("/falldetector/TRTorch/log_err.txt", "w", stderr);
+    }
 
 void TRTorchLogger::log(LogLevel lvl, std::string msg) {
   // suppress messages with severity enum value greater than the reportable

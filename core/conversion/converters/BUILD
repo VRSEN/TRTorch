@@ -35,6 +35,7 @@ cc_library(
         "impl/batch_norm.cpp",
         "impl/concat.cpp",
         "impl/constant.cpp",
+        "impl/constant_pad.cpp",
         "impl/conv_deconv.cpp",
         "impl/cumsum.cpp",
         "impl/element_wise.cpp",
@@ -56,6 +57,7 @@ cc_library(
         "impl/topk.cpp",
         "impl/unary.cpp",
         "impl/unsqueeze.cpp",
+        "impl/nms.cpp",
     ],
     hdrs = [
         "converter_util.h",

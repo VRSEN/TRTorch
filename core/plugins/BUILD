@@ -12,12 +12,14 @@ cc_library(
     hdrs = [
         "impl/interpolate_plugin.h",
         "impl/normalize_plugin.h",
+        #"impl/nmsPlugin.h",
         "plugins.h",
 
     ],
     srcs = [
         "impl/interpolate_plugin.cpp",
         "impl/normalize_plugin.cpp",
+        #"impl/nmsPlugin.cpp",
         "register_plugins.cpp",
     ],
     deps = [
@@ -49,5 +51,7 @@ pkg_tar(
     name = "impl_include",
     package_dir = "core/plugins/impl",
     srcs = ["impl/interpolate_plugin.h",
-            "impl/normalize_plugin.h"],
+            "impl/normalize_plugin.h",
+            #"impl/nmsPlugin.h"
+           ],
 )

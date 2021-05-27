@@ -1,0 +1,177 @@
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Settings requested for TensorRT engine:
+    Operating Precision: Float16
+    TF32 Floating Point Computation Enabled: 1
+    Truncate Long and Double: 1
+    Make Refittable Engine: 0
+    Debuggable Engine: 0
+    Strict Types: 0
+    GPU ID: 0
+    Allow GPU Fallback (if running on DLA): 1
+    Min Timing Iterations: 2
+    Avg Timing Iterations: 1
+    Max Workspace Size: 0
+    Max Batch Size: 1
+    Device Type: DLA
+    GPU ID: 0
+    DLACore: 0
+    Engine Capability: Default
+    Calibrator Created: 0
+[0;32mINFO: [0m[TRTorch Conversion Context] - Converting Block
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Input argument_1.1 named input_0 in engine (conversion.AddInputs)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Input shape set to [3, 1080, 1920]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %2 : Long(3, strides=[1], requires_grad=0, device=cuda:0) = prim::Constant[value= 0  1  3 [ CUDALongType{3} ]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [3])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %3 : float = prim::Constant[value=0.0625]() # /usr/local/lib/python3.6/dist-packages/torchvision-0.9.0a0+01dfa8e-py3.6-linux-aarch64.egg/torchvision/ops/roi_align.py:55:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0.0625
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %4 : float = prim::Constant[value=0.125]() # /usr/local/lib/python3.6/dist-packages/torchvision-0.9.0a0+01dfa8e-py3.6-linux-aarch64.egg/torchvision/ops/roi_align.py:55:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0.125
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %5 : float = prim::Constant[value=0.25]() # /usr/local/lib/python3.6/dist-packages/torchvision-0.9.0a0+01dfa8e-py3.6-linux-aarch64.egg/torchvision/ops/roi_align.py:55:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0.25
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %6 : int = prim::Constant[value=7]() # /falldetector/detectron2/detectron2/modeling/poolers.py:241:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 7
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %7 : int = prim::Constant[value=14]() # /falldetector/detectron2/detectron2/modeling/poolers.py:241:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 14
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %8 : Long(1, 1, strides=[1, 1], requires_grad=0, device=cuda:0) = prim::Constant[value={0}]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [1, 1])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %9 : int[] = prim::Constant[value=[0, 3, 4, 1, 2]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [0, 3, 4, 1, 2]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %10 : int[] = prim::Constant[value=[0, 2, 3, 1]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [0, 2, 3, 1]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %11 : int[] = prim::Constant[value=[-1, 4]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [-1, 4]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %12 : int[] = prim::Constant[value=[1, -1, 4]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [1, -1, 4]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %13 : int[] = prim::Constant[value=[-1]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [-1]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %14 : int = prim::Constant[value=4]() # /falldetector/detectron2/detectron2/modeling/proposal_generator/rpn.py:466:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 4
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %15 : int = prim::Constant[value=6]() # /falldetector/detectron2/detectron2/modeling/box_regression.py:87:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 6
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %16 : int = prim::Constant[value=9223372036854775807]() # /falldetector/detectron2/detectron2/modeling/box_regression.py:90:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 9223372036854775807
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %17 : int = prim::Constant[value=64]() # /falldetector/detectron2/detectron2/modeling/anchor_generator.py:42:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 64
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %18 : int = prim::Constant[value=32]() # /falldetector/detectron2/detectron2/modeling/anchor_generator.py:42:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 32
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %19 : int = prim::Constant[value=16]() # /falldetector/detectron2/detectron2/modeling/anchor_generator.py:42:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 16
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %20 : int = prim::Constant[value=8]() # /falldetector/detectron2/detectron2/modeling/anchor_generator.py:42:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 8
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %21 : int[] = prim::Constant[value=[0, 0]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [0, 0]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %22 : int[] = prim::Constant[value=[1, 1]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [1, 1]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %23 : int[] = prim::Constant[value=[2, 2]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [2, 2]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %24 : int = prim::Constant[value=3]() # /usr/local/lib/python3.6/dist-packages/torch/nn/functional.py:659:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 3
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %25 : float = prim::Constant[value=0.10000000000000001]() # /usr/local/lib/python3.6/dist-packages/torch/nn/functional.py:2147:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0.10000000000000001
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %26 : float = prim::Constant[value=1.0000000000000001e-05]() # /usr/local/lib/python3.6/dist-packages/torch/nn/functional.py:2147:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 1.0000000000000001e-05
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %27 : bool = prim::Constant[value=1]() # /falldetector/detectron2/detectron2/layers/wrappers.py:85:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: True
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %28 : float = prim::Constant[value=0.]() # /usr/local/lib/python3.6/dist-packages/torch/nn/functional.py:3997:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0.
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %29 : int = prim::Constant[value=-2]() # /falldetector/detectron2/detectron2/structures/image_list.py:115:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: -2
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %30 : int = prim::Constant[value=-1]() # /falldetector/detectron2/detectron2/structures/image_list.py:115:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: -1
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %31 : int = prim::Constant[value=2]() # /falldetector/detectron2/detectron2/structures/image_list.py:94:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 2
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %32 : int = prim::Constant[value=1]() # /falldetector/detectron2/detectron2/modeling/meta_arch/rcnn.py:225:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 1
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %33 : int = prim::Constant[value=0]() # /falldetector/detectron2/detectron2/modeling/meta_arch/rcnn.py:224:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %34 : Device = prim::Constant[value="cuda:0"]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: cuda:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %35 : None = prim::Constant() # :0:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: None
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %36 : bool = prim::Constant[value=0]() # /falldetector/detectron2/detectron2/modeling/meta_arch/rcnn.py:224:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: False
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %47 : Tensor = aten::sub(%argument_1.1, %2310, %32) # /falldetector/detectron2/detectron2/modeling/meta_arch/rcnn.py:225:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is an already converted tensor
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Frozen tensor shape: [3, 1080, 1920]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found IValue containing object of type Float(3, 1, 1, strides=[1, 1, 1], requires_grad=0, device=cuda:0)
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: [3, 1, 1]
+    Number of input maps: 1
+    Number of output maps: 3
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Freezing tensor 0x70ce7310 as an IConstantLayer
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Frozen tensor shape: [3, 1, 1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: [3, 1080, 1920]
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %t.1 : Tensor = aten::div(%47, %2311) # /falldetector/detectron2/detectron2/modeling/meta_arch/rcnn.py:225:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is an already converted tensor
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Frozen tensor shape: [3, 1080, 1920]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found IValue containing object of type Float(3, 1, 1, strides=[1, 1, 1], requires_grad=0, device=cuda:0)
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: [3, 1, 1]
+    Number of input maps: 1
+    Number of output maps: 3
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Freezing tensor 0x70e41020 as an IConstantLayer
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Frozen tensor shape: [3, 1, 1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: [3, 1080, 1920]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %49 : int = aten::size(%t.1, %32) # /falldetector/detectron2/detectron2/structures/image_list.py:94:0
+[0;33mWARNING: [0m[TRTorch - Debug Build] - There may be undefined behavior using dynamic shape and aten::size
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 1080
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %50 : Tensor = prim::NumToTensor(%49) # :0:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %51 : int = aten::size(%t.1, %31) # /falldetector/detectron2/detectron2/structures/image_list.py:94:0
+[0;33mWARNING: [0m[TRTorch - Debug Build] - There may be undefined behavior using dynamic shape and aten::size
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: 1920
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %52 : Tensor = prim::NumToTensor(%51) # :0:0
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %53 : Tensor[] = prim::ListConstruct(%50, %52)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [1080
+[ CPULongType{} ], 1920
+[ CPULongType{} ]]
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %image_size.1 : Tensor = aten::stack(%53, %33) # /falldetector/detectron2/detectron2/structures/image_list.py:20:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: []
+    Number of input maps: 0
+    Number of output maps: 0
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: []
+    Number of input maps: 0
+    Number of output maps: 0
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: [2]
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %55 : Tensor[] = prim::ListConstruct(%image_size.1)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [<__torch__.torch.classes._trtorch_eval_ivalue_types.TensorContainer object at 0x6f817bf0>]
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %56 : Tensor = aten::select(%image_size.1, %33, %32) # /falldetector/detectron2/detectron2/structures/image_list.py:115:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is an already converted tensor
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: [1]
+    Number of input maps: 1
+    Number of output maps: 1
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: []
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %57 : Tensor = aten::select(%image_size.1, %33, %33) # /falldetector/detectron2/detectron2/structures/image_list.py:115:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is an already converted tensor
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Weights: [1]
+    Number of input maps: 1
+    Number of output maps: 1
+    Element shape: [1]
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: []
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %148 : Tensor = prim::Constant[value={31}]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %149 : Tensor = prim::Constant[value={32}]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be a tensor (shape [])
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Evaluating %150 : int[] = prim::Constant[value=[3, 3]]()
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Found the value to be: [3, 3]
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %151 : Tensor = aten::stack(%55, %33) # /falldetector/detectron2/detectron2/structures/image_list.py:96:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch - Debug Build] - Output tensor shape: [1, 2]
+[0;32mINFO: [0m[TRTorch Conversion Context] - Adding Layer %max_size.1 : Tensor, %153 : Tensor = aten::max(%151, %33, %36) # /falldetector/detectron2/detectron2/structures/image_list.py:96:0 (ctx.AddLayer)
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is an already converted tensor
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[1;35mDEBUG: [0m[TRTorch Conversion Context] - Node input is a result of a previously evaluated value
+[0;31mERROR: [0m[TRTorch - Debug Build] - Requested converter for aten::max, but no such converter was found

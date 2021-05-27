@@ -41,3 +41,5 @@ py/.eggs
 notebooks/.ipynb_checkpoints/
 *.cache
 tests/py/data
+
+.ipynb_checkpoints/

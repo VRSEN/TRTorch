@@ -26,7 +26,20 @@ auto constant_registrations TRTORCH_UNUSED = RegisterNodeConversionPatterns()
               LOG_DEBUG("Output tensor shape: " << const_out->getDimensions());
 
               return true;
-            }});
+            }})
+    .pattern({"aten::Int.Tensor(Tensor a) -> (int)", //-torchscript схема функции для конвертации
+            [](ConversionCtx* ctx, const torch::jit::Node* n, args& args) -> bool { // ctx - struct в trtorch который содержит конфиг и nvinfer1::INetworkDefinition - класс определяющий структуру всей сетки и методы помошники
+              auto t = args[0].ITensorOrFreeze(ctx);
+              t->setType(nvinfer1::DataType::kINT32); //-1 аргумент ITensor! (не IValue)
+                
+              //конвертировать ITensor в int тут
+                
+              t = ctx->AssociateValueAndTensor(n->outputs()[0], t); //-привязать ITensor к outputу ноды (надо как то привязать int)
+              
+              //LOG_DEBUG("Output tensor shape: ");// << t->getDimensions());
+              return true;
+            }})
+    ;
 // clang-format on
 } // namespace
 } // namespace impl

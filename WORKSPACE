@@ -35,7 +35,7 @@ git_repository(
 new_local_repository(
     name = "cuda",
     build_file = "@//third_party/cuda:BUILD",
-    path = "/usr/local/cuda-11.1/",
+    path = "/usr/local/cuda-10.2/",
 )
 
 new_local_repository(
@@ -47,45 +47,45 @@ new_local_repository(
 # Tarballs and fetched dependencies (default - use in cases when building from precompiled bin and tarballs)
 #############################################################################################################
 
-http_archive(
-    name = "libtorch",
-    build_file = "@//third_party/libtorch:BUILD",
-    sha256 = "1f8aec376f9343538bd7c2fd3abb81ed3af11f575efe3aa72777c4d62044b832",
-    strip_prefix = "libtorch",
-    urls = ["https://download.pytorch.org/libtorch/cu111/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcu111.zip"],
-)
-
-http_archive(
-    name = "libtorch_pre_cxx11_abi",
-    build_file = "@//third_party/libtorch:BUILD",
-    sha256 = "3a6e0dc11859111e75caa640c8ce9bf904fbb6e9992b4345e444ed5410e4d77e",
-    strip_prefix = "libtorch",
-    urls = ["https://download.pytorch.org/libtorch/cu111/libtorch-shared-with-deps-1.8.1%2Bcu111.zip"],
-)
-
-# Download these tarballs manually from the NVIDIA website
-# Either place them in the distdir directory in third_party and use the --distdir flag
-# or modify the urls to "file:///<PATH TO TARBALL>/<TARBALL NAME>.tar.gz
-
-http_archive(
-    name = "cudnn",
-    build_file = "@//third_party/cudnn/archive:BUILD",
-    sha256 = "98a8784e92862f20018d20c281b30d4a0cd951f93694f6433ccf4ae9c502ba6a",
-    strip_prefix = "cuda",
-    urls = [
-        "https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.1.1.33/11.2_20210301/cudnn-11.2-linux-x64-v8.1.1.33.tgz",
-    ],
-)
-
-http_archive(
-    name = "tensorrt",
-    build_file = "@//third_party/tensorrt/archive:BUILD",
-    sha256 = "d3a1f478e304b48878604fac70ce7920fece71f9cac62f925c9c59c197f5d087",
-    strip_prefix = "TensorRT-7.2.3.4",
-    urls = [
-        "https://developer.nvidia.com/compute/machine-learning/tensorrt/secure/7.2.3/tars/TensorRT-7.2.3.4.Ubuntu-18.04.x86_64-gnu.cuda-11.1.cudnn8.1.tar.gz",
-    ],
-)
+#http_archive(
+#    name = "libtorch",
+#    build_file = "@//third_party/libtorch:BUILD",
+#    sha256 = "1f8aec376f9343538bd7c2fd3abb81ed3af11f575efe3aa72777c4d62044b832",
+#    strip_prefix = "libtorch",
+#    urls = ["https://download.pytorch.org/libtorch/cu111/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcu111.zip"],
+#)
+#
+#http_archive(
+#    name = "libtorch_pre_cxx11_abi",
+#    build_file = "@//third_party/libtorch:BUILD",
+#    sha256 = "3a6e0dc11859111e75caa640c8ce9bf904fbb6e9992b4345e444ed5410e4d77e",
+#    strip_prefix = "libtorch",
+#    urls = ["https://download.pytorch.org/libtorch/cu111/libtorch-shared-with-deps-1.8.1%2Bcu111.zip"],
+#)
+#
+## Download these tarballs manually from the NVIDIA website
+## Either place them in the distdir directory in third_party and use the --distdir flag
+## or modify the urls to "file:///<PATH TO TARBALL>/<TARBALL NAME>.tar.gz
+#
+#http_archive(
+#    name = "cudnn",
+#    build_file = "@//third_party/cudnn/archive:BUILD",
+#    sha256 = "98a8784e92862f20018d20c281b30d4a0cd951f93694f6433ccf4ae9c502ba6a",
+#    strip_prefix = "cuda",
+#    urls = [
+#        "https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.1.1.33/11.2_20210301/cudnn-11.2-linux-x64-v8.1.1.33.tgz",
+#    ],
+#)
+#
+#http_archive(
+#    name = "tensorrt",
+#    build_file = "@//third_party/tensorrt/archive:BUILD",
+#    sha256 = "d3a1f478e304b48878604fac70ce7920fece71f9cac62f925c9c59c197f5d087",
+#    strip_prefix = "TensorRT-7.2.3.4",
+#    urls = [
+#        "https://developer.nvidia.com/compute/machine-learning/tensorrt/secure/7.2.3/tars/TensorRT-7.2.3.4.Ubuntu-18.04.x86_64-gnu.cuda-11.1.cudnn8.1.tar.gz",
+#    ],
+#)
 
 ####################################################################################
 # Locally installed dependencies (use in cases of custom dependencies or aarch64)
@@ -98,44 +98,41 @@ http_archive(
 # x86_64 python distribution. If using NVIDIA's version just point to the root of the package
 # for both versions here and do not use --config=pre-cxx11-abi
 
-#new_local_repository(
-#    name = "libtorch",
-#    path = "/usr/local/lib/python3.6/dist-packages/torch",
-#    build_file = "third_party/libtorch/BUILD"
-#)
-
-#new_local_repository(
-#    name = "libtorch_pre_cxx11_abi",
-#    path = "/usr/local/lib/python3.6/dist-packages/torch",
-#    build_file = "third_party/libtorch/BUILD"
-#)
-
-#new_local_repository(
-#    name = "cudnn",
-#    path = "/usr/",
-#    build_file = "@//third_party/cudnn/local:BUILD"
-#)
-
-#new_local_repository(
-#   name = "tensorrt",
-#   path = "/usr/",
-#   build_file = "@//third_party/tensorrt/local:BUILD"
-#)
+new_local_repository(
+    name = "libtorch",
+    path = "/usr/local/lib/python3.6/dist-packages/torch",
+    build_file = "third_party/libtorch/BUILD"
+)
+new_local_repository(
+    name = "libtorch_pre_cxx11_abi",
+    path = "/usr/local/lib/python3.6/dist-packages/torch",
+    build_file = "third_party/libtorch/BUILD"
+)
+new_local_repository(
+    name = "cudnn",
+    path = "/usr/",
+    build_file = "@//third_party/cudnn/local:BUILD"
+)
+new_local_repository(
+   name = "tensorrt",
+   path = "/usr/",
+   build_file = "@//third_party/tensorrt/local:BUILD"
+)
 
 #########################################################################
 # Testing Dependencies (optional - comment out on aarch64)
 #########################################################################
-pip_install(
-    name = "trtorch_py_deps",
-    requirements = "//py:requirements.txt",
-)
-
-pip_install(
-    name = "py_test_deps",
-    requirements = "//tests/py:requirements.txt",
-)
-
-pip_install(
-    name = "pylinter_deps",
-    requirements = "//tools/linter:requirements.txt",
-)
+#pip_install(
+#    name = "trtorch_py_deps",
+#    requirements = "//py:requirements.txt",
+#)
+#
+#pip_install(
+#    name = "py_test_deps",
+#    requirements = "//tests/py:requirements.txt",
+#)
+#
+#pip_install(
+#    name = "pylinter_deps",
+#    requirements = "//tools/linter:requirements.txt",
+#)

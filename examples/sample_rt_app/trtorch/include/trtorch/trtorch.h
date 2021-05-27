@@ -106,7 +106,7 @@ struct TRTORCH_API CompileSpec {
      * In the case that you need to use the DataType class itself, interface
      * using this enum vs. normal instatination
      *
-     * ex.type = DataType::kFloat;
+     * ex. trtorch::DataType type = DataType::kFloat;
      */
     enum Value : int8_t {
       /// FP32

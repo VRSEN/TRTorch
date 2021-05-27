@@ -162,7 +162,7 @@ nvinfer1::Dims unpadDims(const nvinfer1::Dims& d) {
 
 nvinfer1::Dims unsqueezeDims(const nvinfer1::Dims& d, int pos, int val, bool use_zeros) {
   // acceptable range for pos is [0, d.nbDims]
-  TRTORCH_ASSERT(pos >= 0 && pos <= d.nbDims, "ERROR: Index to unsqueeze is out of bounds.");
+  TRTORCH_ASSERT(pos >= 0 && pos <= d.nbDims, "ERROR: Index to unsqueeze is out of bounds." + std::to_string(d.nbDims));
 
   nvinfer1::Dims dims;
   for (int i = 0, j = 0; j <= d.nbDims; j++) {
@@ -237,6 +237,7 @@ const std::unordered_map<at::ScalarType, nvinfer1::DataType>& get_at_trt_type_ma
   static const std::unordered_map<at::ScalarType, nvinfer1::DataType> at_trt_type_map = {
       {at::kFloat, nvinfer1::DataType::kFLOAT},
       {at::kHalf, nvinfer1::DataType::kHALF},
+      {at::kLong, nvinfer1::DataType::kHALF},
       {at::kInt, nvinfer1::DataType::kINT32},
       {at::kChar, nvinfer1::DataType::kINT8},
       {at::kBool, nvinfer1::DataType::kBOOL},
@@ -248,6 +249,7 @@ const std::unordered_map<nvinfer1::DataType, at::ScalarType>& get_trt_at_type_ma
   static const std::unordered_map<nvinfer1::DataType, at::ScalarType> trt_at_type_map = {
       {nvinfer1::DataType::kFLOAT, at::kFloat},
       {nvinfer1::DataType::kHALF, at::kHalf},
+      {nvinfer1::DataType::kHALF, at::kLong},
       {nvinfer1::DataType::kINT32, at::kInt},
       {nvinfer1::DataType::kINT8, at::kChar},
       {nvinfer1::DataType::kBOOL, at::kBool},
@@ -272,7 +274,7 @@ const std::unordered_map<at::ScalarType, nvinfer1::DataType>& get_aten_trt_type_
 
 nvinfer1::DataType toTRTDataType(at::ScalarType t) {
   auto aten_trt_type_map = get_aten_trt_type_map();
-  TRTORCH_CHECK(aten_trt_type_map.find(t) != aten_trt_type_map.end(), "Unsupported Aten datatype");
+  TRTORCH_CHECK(aten_trt_type_map.find(t) != aten_trt_type_map.end(), std::string("Unsupported aten datatype - ") + c10::toString(t));
   return aten_trt_type_map.at(t);
 }
 

@@ -10,6 +10,8 @@
 #include "core/conversion/evaluators/eval_macros.h"
 #include "core/conversion/evaluators/evaluators.h"
 
+#include <typeinfo>
+
 namespace trtorch {
 namespace core {
 namespace conversion {
@@ -360,6 +362,39 @@ auto aten_registrations TRTORCH_UNUSED =
                         "aten::Float.Scalar(Scalar a) -> float",
                         "aten::Float.int(int a) -> float",
                         "aten::Float.bool(bool a) -> float",
+                    })})
+        .evaluator({c10::Symbol::fromQualString("aten::Int"),
+                    [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+                      if (args.at(n->input(0)).isITensor()){
+                        auto a = args.at(n->input(0)).ITensor();
+                        a->setType(nvinfer1::DataType::kINT32);
+                        return a;
+                      } 
+                        else if (args.at(n->input(0)).IValue()->isTensor()){
+                        auto a = args.at(n->input(0)).unwrapToTensor();
+                        return a.item().to<int>();
+                      }
+//                         else if (args.at(n->input(0)).IValue()->isInt()) {
+//                         auto a = args.at(n->input(0)).unwrapToInt();
+//                         return (int)a;
+//                       } else if (args.at(n->input(0)).IValue()->isDouble()) {
+//                         auto a = args.at(n->input(0)).unwrapToDouble();
+//                         return (int)a;
+//                       } else if (args.at(n->input(0)).IValue()->isBool()) {
+//                         auto a = args.at(n->input(0)).unwrapToBool();
+//                         return (int)a;
+//                       } 
+                    else {
+                        TRTORCH_THROW_ERROR("Unimplemented data type for aten::Int evaluator:");
+                                           //<< args.at(n->input(0)).IValue()->type()->str());
+                        return {};
+                      }
+                    },
+                    EvalOptions().validSchemas({
+                        "aten::Int.Tensor(Tensor a) -> int",
+                        "aten::Int.Scalar(Scalar a) -> int",
+                        "aten::Int.int(int a) -> int",
+                        "aten::Int.bool(bool a) -> int"
                     })})
         .evaluator({c10::Symbol::fromQualString("aten::__not__"),
                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
