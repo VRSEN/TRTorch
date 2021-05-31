@@ -605,7 +605,37 @@ auto aten_registrations TRTORCH_UNUSED =
                             Layout? layout=None, Device? device=None, bool? pin_memory=None) -> (Tensor))SIG",
                         R"SIG(aten::arange.start_step(Scalar start, Scalar end, Scalar step, *, ScalarType? dtype=None,
                         Layout? layout=None, Device? device=None, bool? pin_memory=None) -> (Tensor))SIG",
-                    })});
+                    })})
+        .evaluator({c10::Symbol::fromQualString("aten::meshgrid"),
+                    [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+                      c10::List<at::Tensor> tensors = args.at(n->input(0)).unwrapToTensorList();
+                      //int tensor_count = tensors.size();
+                      //assume 2 tensors for now
+                      return at::meshgrid({tensors[0],tensors[1]});
+                    },
+                    EvalOptions().validSchemas({
+                        R"SIG(aten::meshgrid(Tensor[] tensors) -> (Tensor[]))SIG"
+                    })})
+        .evaluator({c10::Symbol::fromQualString("aten::sort"),
+                    [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+                      auto tensor_var = args.at(n->input(0)).unwrapToTensor();
+                      int dim = args.at(n->input(1)).unwrapToInt();
+                      bool descending = args.at(n->input(2)).unwrapToBool();
+                        
+//                       if (tensor_var.isITensor()) {
+//                       auto tensor = tensor_var.ITensor();
+//                       return at::sort(tensor,dim,descending);
+//                       }
+//                       else {
+//                       auto tensor = tensor_var.unwrapToTensor();
+//                       }
+                        return at::sort(tensor_var,dim,descending);
+                      
+                    },
+                    EvalOptions().validSchemas({
+                        "aten::sort(Tensor self, int dim=-1, bool descending=False) -> (Tensor values, Tensor indices)"
+                    })})
+    ;
 } // namespace
 } // namespace evaluators
 } // namespace conversion
