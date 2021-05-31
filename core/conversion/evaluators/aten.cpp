@@ -396,6 +396,22 @@ auto aten_registrations TRTORCH_UNUSED =
                         "aten::Int.int(int a) -> int",
                         "aten::Int.bool(bool a) -> int"
                     })})
+            .evaluator({c10::Symbol::fromQualString("aten::ScalarImplicit"),
+                    [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+                        
+                      if (args.at(n->input(0)).isITensor()){
+                        auto a = args.at(n->input(0)).ITensor();
+                        return a;
+                      } 
+                        else if (args.at(n->input(0)).IValue()->isTensor()){
+                        auto a = args.at(n->input(0)).unwrapToTensor();
+                          return a.item();
+                      }
+                      
+                    },
+                    EvalOptions().validSchemas({
+                        "aten::ScalarImplicit(Tensor a) -> (Scalar)",
+                    })})
         .evaluator({c10::Symbol::fromQualString("aten::__not__"),
                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
                       auto el = args.at(n->input(0)).unwrapToBool();
