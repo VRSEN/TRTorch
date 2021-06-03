@@ -40,6 +40,7 @@ cc_library(
         "impl/cumsum.cpp",
         "impl/element_wise.cpp",
         "impl/expand.cpp",
+        "impl/index.cpp",
         "impl/interpolate.cpp",
         "impl/layer_norm.cpp",
         "impl/linear.cpp",

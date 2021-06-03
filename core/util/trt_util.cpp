@@ -182,7 +182,7 @@ nvinfer1::Dims unsqueezeDims(const nvinfer1::Dims& d, int pos, int val, bool use
 
 nvinfer1::Dims squeezeDims(const nvinfer1::Dims& d, int pos, bool use_zeros) {
   // acceptable range for pos is [0, d.nbDims]
-  TRTORCH_ASSERT(pos >= 0 && pos <= d.nbDims, "ERROR: Index to squeeze is out of bounds.");
+  TRTORCH_ASSERT(pos >= 0 && pos <= d.nbDims, "ERROR: Index to squeeze is out of bounds. Dims:" + std::to_string(d.nbDims) + " Pos:" + std::to_string(pos));
 
   nvinfer1::Dims dims;
   int j = 0;

@@ -616,25 +616,26 @@ auto aten_registrations TRTORCH_UNUSED =
                     EvalOptions().validSchemas({
                         R"SIG(aten::meshgrid(Tensor[] tensors) -> (Tensor[]))SIG"
                     })})
-        .evaluator({c10::Symbol::fromQualString("aten::sort"),
-                    [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
-                      auto tensor_var = args.at(n->input(0)).unwrapToTensor();
-                      int dim = args.at(n->input(1)).unwrapToInt();
-                      bool descending = args.at(n->input(2)).unwrapToBool();
-                        
-//                       if (tensor_var.isITensor()) {
-//                       auto tensor = tensor_var.ITensor();
-//                       return at::sort(tensor,dim,descending);
-//                       }
-//                       else {
-//                       auto tensor = tensor_var.unwrapToTensor();
-//                       }
-                        return at::sort(tensor_var,dim,descending);
-                      
-                    },
-                    EvalOptions().validSchemas({
-                        "aten::sort(Tensor self, int dim=-1, bool descending=False) -> (Tensor values, Tensor indices)"
-                    })})
+//         .evaluator({c10::Symbol::fromQualString("aten::unbind"),
+//                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+//                       at::Tensor tensor = args.at(n->input(0)).unwrapToTensor();
+//                       int dim = args.at(n->input(1)).unwrapToInt();
+//                       return at::unbind(tensor, dim);
+//                     },
+//                     EvalOptions().validSchemas({
+//                         "aten::unbind.int(Tensor(a) self, int dim=0)-> (Tensor[])"
+//                     })})
+//             .evaluator({c10::Symbol::fromQualString("aten::nonzero"),
+//                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+//                       auto in = args[0].ITensor();
+//                       auto input_dims = in->getDimensions();
+//                       //int tensor_count = tensors.size();
+//                       //assume 2 tensors for now
+//                       return at::nonzero(tensor);
+//                     },
+//                     EvalOptions().validSchemas({
+//                         "aten::nonzero(Tensor self) -> (Tensor)"
+//                     })})
     ;
 } // namespace
 } // namespace evaluators

@@ -36,6 +36,10 @@ auto stack_registrations TRTORCH_UNUSED = RegisterNodeConversionPatterns().patte
            auto cont = t.toCustomClass<TensorContainer>();
            itensor = cont->tensor();
          }
+           
+         if (dim < 0) {
+           dim = util::toVec(itensor->getDimensions()).size() + 1 + dim;
+         }
 
          auto shuffle_layer = ctx->net->addShuffle(*itensor);
          TRTORCH_CHECK(shuffle_layer, "Unable to create shuffle layer from node: " << *n);
