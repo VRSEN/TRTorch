@@ -248,12 +248,12 @@ auto select_registrations TRTORCH_UNUSED =
                     LOG_DEBUG("Converted split op into a list of IValues");
                     return true;
                   }})
-        .pattern({"aten::nonzero(Tensor self) -> (Tensor)",
-                  [](ConversionCtx* ctx, const torch::jit::Node* n, args& args) -> bool {
-                    auto in = args[0].ITensor();
-                    auto input_dims = in->getDimensions();
-                    return true;
-                  }})
+//         .pattern({"aten::nonzero(Tensor self) -> (Tensor)",
+//                   [](ConversionCtx* ctx, const torch::jit::Node* n, args& args) -> bool {
+//                     auto in = args[0].ITensor();
+//                     auto input_dims = in->getDimensions();
+//                     return true;
+//                   }})
     ;
 
 } // namespace
