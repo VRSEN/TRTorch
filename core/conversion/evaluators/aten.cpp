@@ -616,6 +616,21 @@ auto aten_registrations TRTORCH_UNUSED =
                     EvalOptions().validSchemas({
                         R"SIG(aten::meshgrid(Tensor[] tensors) -> (Tensor[]))SIG"
                     })})
+//         .evaluator({c10::Symbol::fromQualString("aten::index"),
+//                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
+//                       auto tensor = args.at(n->input(0)).unwrapToTensor();
+//                       auto ind = args.at(n->input(1)).unwrapToTensorList();
+                        
+//                       c10::List<c10::optional<at::Tensor>> indices;
+//                       for (int i = 0; i<ind.size(); i++){
+//                           indices[i] = c10::optional<at::Tensor>(ind[i]);
+//                       }
+//                       //auto indices = args.at(n->input(1)).IValue()->toListRef();
+//                       return at::index(tensor, indices);
+//                     },
+//                     EvalOptions().validSchemas({
+//                         "aten::index.Tensor(Tensor tensor, Tensor[] indices) -> (Tensor)"
+//                     })})
 //         .evaluator({c10::Symbol::fromQualString("aten::unbind"),
 //                     [](const torch::jit::Node* n, kwargs& args) -> c10::optional<torch::jit::IValue> {
 //                       at::Tensor tensor = args.at(n->input(0)).unwrapToTensor();

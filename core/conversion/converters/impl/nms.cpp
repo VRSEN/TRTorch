@@ -31,26 +31,6 @@ auto nms TRTORCH_UNUSED = RegisterNodeConversionPatterns()
             auto nms_thresh = args[2].unwrapToDouble();
              
             // concatenate additional tesnor to boxes with the indices
-            
-            // expand dims for boxes tensor
-            auto shuffle_layer1 = ctx->net->addShuffle(*boxes_tensor);
-            TRTORCH_CHECK(shuffle_layer1, "Unable to create shuffle layer from node: " << *n);
-            shuffle_layer->setReshapeDimensions(util::unsqueezeDims(boxes_tensor->getDimensions(), 1));
-            auto boxes_tensor = shuffle_layer1->getOutput(0)
-                
-            auto shuffle_layer2 = ctx->net->addShuffle(*boxes_tensor);
-            TRTORCH_CHECK(shuffle_layer2, "Unable to create shuffle layer from node: " << *n);
-            shuffle_layer->setReshapeDimensions(util::unsqueezeDims(boxes_tensor->getDimensions(), 0));
-            auto boxes_tensor = shuffle_layer2->getOutput(0)
-            
-            //expand dims for scores tensor
-            auto shuffle_layer3 = ctx->net->addShuffle(*scores_tensor);
-            TRTORCH_CHECK(shuffle_layer3, "Unable to create shuffle layer from node: " << *n);
-            shuffle_layer->setReshapeDimensions(util::unsqueezeDims(boxes_tensor->getDimensions(), 0));
-            auto scores_tensor = shuffle_layer3->getOutput(0)
-                
-            
-            
 
             //const int numInputs = inputs.size();
             //LOG_ERROR("no of inputs are "<<numInputs);

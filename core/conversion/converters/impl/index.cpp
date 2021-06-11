@@ -17,14 +17,24 @@ auto index_registrations TRTORCH_UNUSED =
     RegisterNodeConversionPatterns()
         .pattern({"aten::index.Tensor(Tensor self, Tensor?[] indices) -> (Tensor)",
                   [](ConversionCtx* ctx, const torch::jit::Node* n, args& args) -> bool {
-                    auto in = args[0].ITensor();
+                    nvinfer1::ITensor* in;
+                      
+                    if(args[0].isIValue()){
+                        auto tensor = args[0].unwrapToTensor();
+                        auto weights = Weights(ctx, tensor);
+                        auto const_layer = ctx->net->addConstant(weights.shape, weights.data);
+                        in = const_layer->getOutput(0);
+                    }else{
+                        in = args[0].ITensor();
+                    }
+                      
                     auto input_dims = in->getDimensions();
                     auto ind = args[1].IValue()->toListRef();
                     TRTORCH_CHECK(
            (input_dims.nbDims>=ind.size()),
            "Dimension out of range (expected to be in range of [" << 0 << ", " << input_dims.nbDims
                                                                   << "], but got " << ind.size() << ")");
-                    
+                    LOG_DEBUG("Indices size: " << ind.size());
                     // run index_select for each dimension
                     for(int32_t axis = 0; axis<ind.size(); axis++){
                         
@@ -43,12 +53,16 @@ auto index_registrations TRTORCH_UNUSED =
                             TRTORCH_CHECK(const_layer, "Unable to create constant layer from node: " << *n);
                             itensor = const_layer->getOutput(0);
                             LOG_DEBUG("ITensor dtype: " << itensor->getType());
-                        } else {
+                        } 
+                        else if (indices.isCustomClass()){
                             LOG_DEBUG("Indices dtype: " << indices.type());
                             auto cont = indices.toCustomClass<TensorContainer>();
                             itensor = cont->tensor();
                             //itensor->setType(nvinfer1::DataType::kINT32);
-                            LOG_DEBUG("custom class container itensor dtype:"<< itensor->getType());
+                            LOG_DEBUG("custom class container itensor dtype: "<< itensor->getType());
+                        }
+                        else{
+                            LOG_ERROR("Unsupported type: "<<*indices.type());
                         }
                         
                         // when used with boolean mask tensor
