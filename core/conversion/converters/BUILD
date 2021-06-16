@@ -58,7 +58,8 @@ cc_library(
         "impl/topk.cpp",
         "impl/unary.cpp",
         "impl/unsqueeze.cpp",
-        #"impl/nms.cpp",
+        "impl/pyramid_roi.cpp",
+        "impl/full.cpp"
     ],
     hdrs = [
         "converter_util.h",

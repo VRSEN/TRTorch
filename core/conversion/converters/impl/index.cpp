@@ -24,7 +24,7 @@ auto index_registrations TRTORCH_UNUSED =
                         auto weights = Weights(ctx, tensor);
                         auto const_layer = ctx->net->addConstant(weights.shape, weights.data);
                         in = const_layer->getOutput(0);
-                    }else{
+                    } else{
                         in = args[0].ITensor();
                     }
                       
@@ -45,8 +45,8 @@ auto index_registrations TRTORCH_UNUSED =
                         
                         if (indices.isTensor()) {
                             auto t = indices.toTensor();
-                            LOG_DEBUG("Tensor dtype:" << t.dtype());
-                            auto weights = Weights(ctx, indices.toTensor().to(torch::kI32));
+                            LOG_DEBUG("Tensor dtype: " << t.dtype() << ", Tensor shape: " << t.sizes());
+                            auto weights = Weights(ctx, t.to(torch::kI32));
 
                             // IConstantLayer to convert indices from Weights to ITensor
                             auto const_layer = ctx->net->addConstant(weights.shape, weights.data);
@@ -61,13 +61,23 @@ auto index_registrations TRTORCH_UNUSED =
                             //itensor->setType(nvinfer1::DataType::kINT32);
                             LOG_DEBUG("custom class container itensor dtype: "<< itensor->getType());
                         }
+                        else if ((*indices.type()).str() == "None"){
+                            LOG_DEBUG("None for indices, axis - " << axis);
+                            continue;
+                        }
                         else{
                             LOG_ERROR("Unsupported type: "<<*indices.type());
                         }
                         
                         // when used with boolean mask tensor
 //                         if(itensor->getType()==nvinfer1::DataType::kBOOL){
-//                             indices = torch::nonzero(util::toVec(itensor->getDimensions())).squeeze();
+//                             indices = torch::nonzero({util::toVec(itensor->getDimensions())}).squeeze();
+//                             auto weights = Weights(ctx, indices.toTensor().to(torch::kI32));
+//                             // IConstantLayer to convert indices from Weights to ITensor
+//                             auto const_layer = ctx->net->addConstant(weights.shape, weights.data);
+//                             TRTORCH_CHECK(const_layer, "Unable to create constant layer from node: " << *n);
+//                             itensor = const_layer->getOutput(0);
+//                             LOG_DEBUG("ITensor dtype: " << itensor->getType());
 //                         }
                         
                         // index to access needs to be an at::Tensor
@@ -81,13 +91,13 @@ auto index_registrations TRTORCH_UNUSED =
                         auto gather_out = gather_layer->getOutput(0);
                         
                         // IShuffleLayer removes redundant dimensions
-                        auto shuffle_layer = ctx->net->addShuffle(*gather_out);
-                        TRTORCH_CHECK(shuffle_layer, "Unable to create shuffle layer from node: " << *n);
-                        shuffle_layer->setReshapeDimensions(util::squeezeDims(gather_out->getDimensions(), axis));
-                        shuffle_layer->setName(util::node_info(n).c_str());
-                        in = shuffle_layer->getOutput(0);
+//                         auto shuffle_layer = ctx->net->addShuffle(*gather_out);
+//                         TRTORCH_CHECK(shuffle_layer, "Unable to create shuffle layer from node: " << *n);
+//                         shuffle_layer->setReshapeDimensions(util::squeezeDims(gather_out->getDimensions(), axis));
+//                         shuffle_layer->setName(util::node_info(n).c_str());
+//                         in = shuffle_layer->getOutput(0);
                         
-                        //in = gather_out;
+                        in = gather_out;
                     }  
 
                     auto out = ctx->AssociateValueAndTensor(n->outputs()[0], in);
